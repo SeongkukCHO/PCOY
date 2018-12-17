@@ -1,5 +1,5 @@
 # 빅데이터 회귀분석. 피부 질병 예측
-# 나이에 따른 피부 질병 예측
+#
 
 rm(list=ls())
 
@@ -81,6 +81,14 @@ pairs(data %>% dplyr::select(21:34) %>%
       lower.panel=function(x,y){ points(x,y); abline(0, 1, col='red')},
       upper.panel = panel.cor)
 dev.off()
+
+tmp <- as.data.frame(cor(data[,-34], as.numeric(data$Age)))
+tmp <- tmp %>% rename(cor=V1)
+tmp$var <- rownames(tmp)
+tmp %>%
+  ggplot(aes(reorder(var, cor), cor)) +
+  geom_point() +
+  coord_flip()
 
 # 트래인셋과 테스트셋의 구분
 set.seed(1810)
