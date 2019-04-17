@@ -434,7 +434,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from scipy.stats import truncnorm
 
-np.random.seed(201904) # report submission을 위한 seed값을 활용
+np.random.seed(2019) # report submission을 위한 seed값을 활용
 
 ########################################################################################
 #                              Function                                                #
