@@ -127,10 +127,10 @@ errors=0
 for i in range(len(train_image)):
     if NeuralNetwork_of_MNIST.run(train_image[i]).argmax() != train_label[i] :
         errors+=1
-print("Acc of train : ", ((len(train_image) - errors) / ( len(train_image) + errors)) * 100, "%")
+print("Acc of train : ", ((len(train_image) - errors) / ( len(train_image))) * 100, "%")
 
 errors=0
 for i in range(len(test_image)):
     if NeuralNetwork_of_MNIST.run(test_image[i]).argmax() != test_label[i] :
         errors+=1
-print("Acc of test : ", ((len(test_image) - errors) / ( len(test_image) + errors)) * 100, "%")
+print("Acc of test : ", ((len(test_image) - errors) / ( len(test_image))) * 100, "%")
