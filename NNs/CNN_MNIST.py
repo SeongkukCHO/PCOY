@@ -5,7 +5,9 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
 from keras.layers.convolutional import Conv2D, MaxPooling2D
 import numpy as np
+import matplotlib.pyplot as plt
 np.random.seed(2019)
+
 (tr_X, tr_Y), (te_X, te_Y) = keras.datasets.mnist.load_data()
 
 input_shape = (28, 28, 1)
@@ -41,3 +43,53 @@ hist = model.fit(tr_X, tr_Y,
                  score = model.evaluate(te_X, te_Y, verbose=0)
 print('loss:', score[0])
 print('accuracy:', score[1])
+
+
+import random
+
+predict_image = model.predict(te_X)
+predictlabel = np.argmax(predict_image, axis=1)
+test_label = np.argmax(te_Y, axis=1)
+
+result = []
+
+for n in range(0, len(test_labels)):
+    result.append(n)
+
+sampling = random.choices(population=result, k=20)
+
+count = 0
+
+plt.figure(figsize=(8,12))
+
+for n in sampling:
+    count += 1
+    plt.subplot(5, 4, count)
+    plt.imshow(te_X[n].reshape(28, 28))
+    title = "Label:" + str(test_labels[n]) + ", Prediction:" + str(predicted_labels[n])
+    plt.title(title)
+
+plt.tight_layout()
+plt.show()
+
+
+wrong_result = []
+
+for n in range(0, len(test_labels)):
+    if predicted_labels[n] != test_labels[n]:
+        wrong_result.append(n)
+
+sampling = random.choices(population=wrong_result, k=20)
+
+count=0
+plt.figure(figsize=(8,12))
+
+for n in sampling:
+    count += 1
+    plt.subplot(5, 4, count)
+    plt.imshow(te_X[n].reshape(28, 28))
+    title = "Label :" + str(test_labels[n]) + ", Prediction :" + str(predicted_labels[n])
+    plt.title(title)
+
+plt.tight_layout()
+plt.show()
